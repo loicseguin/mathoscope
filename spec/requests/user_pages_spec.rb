@@ -43,6 +43,9 @@ describe "UserPages" do
       end
 
       describe "after saving the user" do
+        before { click_button submit }
+        
+        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
         it { should have_link('Sign out') }
       end
     end
