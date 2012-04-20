@@ -6,8 +6,12 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <% if @user.admin? %>
+        <p>Admin</p>
+      <% end %>
+      <p><%= @user.email %></p>
     </section>
   </aside>
+  <p>Score: <%= @user.score %></p>
 </div>
 
-<%= @user.email %>
