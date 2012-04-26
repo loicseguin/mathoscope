@@ -1,0 +1,16 @@
+<%= form_for @question do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <p>
+  <%= f.label :content, "Question" %>
+  <%= f.text_area :content, rows: 3 %>
+  </p>
+
+  <%= f.fields_for :choices do |builder| %>
+    <%= render "choice_fields", f: builder %>
+  <% end %>
+  <p><%= link_to_add_fields "Add choice", f, :choices %></p>
+  <br />
+
+  <%= f.submit "Save", class: "btn btn-large btn-primary" %>
+<% end %>

@@ -1,0 +1,7 @@
+<li>
+  <%= link_to question.content, question %>
+  <% if current_user.admin? %>
+    | <%= link_to "delete", question, method: :delete, confirm: "Are you sure?" %>
+    | <%= link_to "edit", edit_question_path(question) %>
+  <% end %>
+</li>

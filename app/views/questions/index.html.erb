@@ -1,0 +1,12 @@
+<%= provide(:title, 'All questions') %>
+<h1>All questions</h1>
+
+<%= link_to "New question", new_question_path, class: "btn" %>
+
+<%= will_paginate %>
+
+<ul class="questions">
+  <%= render @questions %>
+</ul>
+
+<%= will_paginate %>

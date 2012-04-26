@@ -1,0 +1,23 @@
+<% provide(:title, @question.content) %>
+<div class="row">
+  <aside class="span4">
+  <section>
+  <% if current_user.admin? %>
+    <p>Admin</p>
+    <p><%= link_to "edit", edit_question_path(@question) %></p>
+  <% end %>
+  </section>
+  </aside>
+
+  <div class="span8 offset2">
+    <p><%= @question.content %></p>
+
+    <ol>
+      <% @question.choices.each do |choice| %>
+        <li><%= choice.content %></li>
+      <% end %>
+    </ol>
+  </div>
+
+</div>
+

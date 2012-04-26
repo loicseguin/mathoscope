@@ -11,7 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120420021516) do
+ActiveRecord::Schema.define(:version => 20120426012413) do
+
+  create_table "choices", :force => true do |t|
+    t.string   "content"
+    t.boolean  "answer"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "choices", ["question_id"], :name => "index_choices_on_question_id"
+
+  create_table "questions", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.text     "content"
+  end
+
+  create_table "responses", :force => true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.integer  "choice_id"
+    t.boolean  "chosen"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
