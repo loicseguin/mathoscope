@@ -1,4 +1,6 @@
 Mathoscope::Application.routes.draw do
+  get "responses/new"
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :questions
@@ -9,6 +11,7 @@ Mathoscope::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
+  match '/testme', to: 'responses#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

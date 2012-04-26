@@ -14,7 +14,6 @@ class Choice < ActiveRecord::Base
   attr_accessible :answer, :content
 
   belongs_to :question
-  has_many :responses, dependent: :destroy
 
   validates :content, presence: true
 end

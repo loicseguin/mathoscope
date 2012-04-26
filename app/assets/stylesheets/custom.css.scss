@@ -194,11 +194,15 @@ input, textarea, select, .uneditable-input {
 }
 
 .fields {
-  label {
-    display: inline;
-  }
   a {
     float: right;
   }
+  input {
+    width: 60%;
+  }
+input.answer, label.answer {
+    display: inline;
+    width: auto;
+}
 }
 

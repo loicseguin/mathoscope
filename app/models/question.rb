@@ -3,9 +3,9 @@
 # Table name: questions
 #
 #  id         :integer         not null, primary key
-#  content    :string(255)
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
+#  content    :text
 #
 
 class Question < ActiveRecord::Base
@@ -20,4 +20,9 @@ class Question < ActiveRecord::Base
     reject_if: lambda { |a| a[:content].blank? },
     allow_destroy: true
 
+  def self.random
+    if (c = count) != 0
+      find(:first, :offset =>rand(c))
+    end
+  end
 end

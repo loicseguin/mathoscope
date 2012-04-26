@@ -1,0 +1,27 @@
+<% provide(:title, "Doing the math!") %>
+
+<div class="row">
+
+  <div class="span8 offset2">
+    <p><%= @question.content %></p>
+
+    <form>
+      <% if @question.choices.count == 1 %>
+        <input type="text" name="response" />
+      <% else %>
+        <% @question.choices.each do |choice| %>
+          <% if @nb_answers == 1 %>
+            <p><input name="choice" type="radio" /> <%= choice.content %></p>
+          <% else %>
+            <p><input type="checkbox" /> <%= choice.content %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+
+    <input type="submit" value="Submit" />
+    <input type="submit" value="Skip" />
+  </form>
+  </div>
+
+</div>
+

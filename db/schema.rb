@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426012413) do
+ActiveRecord::Schema.define(:version => 20120426163305) do
 
   create_table "choices", :force => true do |t|
     t.string   "content"
@@ -33,8 +33,6 @@ ActiveRecord::Schema.define(:version => 20120426012413) do
     t.string   "content"
     t.integer  "user_id"
     t.integer  "question_id"
-    t.integer  "choice_id"
-    t.boolean  "chosen"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
