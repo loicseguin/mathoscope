@@ -14,11 +14,13 @@ class Question < ActiveRecord::Base
   has_many :choices, dependent: :destroy
   has_many :responses
 
+  before_validation :count_answers
+
   validates :content, presence: true
-  validate :at_least_one_choice, :at_least_one_answer, on: :create, on: :update
+  validate :at_least_one_choice, :at_least_one_answer
 
   accepts_nested_attributes_for :choices,
-    reject_if: lambda { |a| a[:content].blank? },
+    reject_if: proc { |a| a[:content].blank? },
     allow_destroy: true
 
   def self.random
@@ -27,16 +29,30 @@ class Question < ActiveRecord::Base
     end
   end
 
-  def at_least_one_choice
-    if choices.count < 1
-      errors[:base] << "A question must have at least one choice."
-    end
-  end
+  private
 
-  def at_least_one_answer
-    if nb_answers < 1
-      errors[:base] << "A question must have at least one answer."
+    def at_least_one_choice
+      if choices.length < 1
+        errors[:base] << "A question must have at least one choice."
+      end
     end
-  end
 
+    def at_least_one_answer
+      if nb_answers < 1
+        errors[:base] << "A question must have at least one answer."
+      end
+    end
+
+    def count_answers
+      if choices.count == 1
+        self.nb_answers = 1
+      else
+        self.nb_answers = 0
+        choices.each do |choice|
+          if choice.answer?
+            self.nb_answers += 1
+          end
+        end
+      end
+    end
 end

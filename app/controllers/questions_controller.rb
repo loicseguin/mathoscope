@@ -9,9 +9,8 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(params[:question])
-    @question.nb_answers = count_answers(@question)
     if @question.save
-      flash[:success] = "New question created."
+      flash[:success] = "New question with #{@question.nb_answers} #{"answer".pluralize(@question.nb_answers)} created."
       redirect_to questions_path
     else
       render 'new'
@@ -38,7 +37,6 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
-    @question.nb_answers = count_answers(params[:question])
     if @question.update_attributes(params[:question])
       flash[:success] = "Question updated"
       redirect_to questions_path
@@ -49,17 +47,4 @@ class QuestionsController < ApplicationController
 
   private
 
-    def count_answers(question)
-      if question.choices.count == 1
-        nb_answers = 1
-      else
-        nb_answers = 0
-        question.choices.each do |choice|
-          if choice.answer?
-            nb_answers += 1
-          end
-        end
-        return nb_answers
-      end
-    end
 end
