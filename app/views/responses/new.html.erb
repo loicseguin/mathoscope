@@ -1,6 +1,7 @@
 <% provide(:title, "Doing the math!") %>
 
-<h2>Score: <%= current_user.score %></h2>
+<h2 id="score">score</h2>
+<h1 id="scoreval"><%= current_user.score %></h1>
 <div class="hero-unit">
 
   <% if @done %>
@@ -29,8 +30,8 @@
         <% end %>
       <% end %>
 
-      <%= submit_tag "Submit" %>
-      <%= submit_tag "Skip" %>
+      <%= submit_tag "Submit", class: "btn btn-primary" %>
+      <%= submit_tag "Skip", class: "btn" %>
     <% end %>
   <% end %>
 

@@ -38,6 +38,7 @@ textarea {
 /* typography */
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  clear: both;
 }
 
 h1 {
@@ -80,10 +81,36 @@ p {
   }
 }
 
+/* flash */
+
+.alert {
+  float: left;
+}
+
+/* you're my hero */
+
 .hero-unit {
+  clear: both;
   h1 {
     margin-bottom: 30px;
   }
+  .btn {
+    margin-top: 20px
+  }
+}
+
+/* score */
+
+#score {
+  float: right;
+  margin-bottom: 0px;
+  font-variant: small-caps
+}
+
+#scoreval {
+  float: right;
+  clear: right;
+  margin-bottom: 10px;
 }
 
 /* footer */
