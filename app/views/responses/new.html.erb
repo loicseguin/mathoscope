@@ -5,22 +5,23 @@
   <div class="span8 offset2">
     <p><%= @question.content %></p>
 
-    <form>
+    <%= form_tag("/responses", method: "post") do %>
+      <%= hidden_field_tag 'question_id', @question.id %>
       <% if @question.choices.count == 1 %>
-        <input type="text" name="response" />
+        <%= text_field_tag "response[content]" %>
       <% else %>
         <% @question.choices.each do |choice| %>
-          <% if @nb_answers == 1 %>
-            <p><input name="choice" type="radio" /> <%= choice.content %></p>
+          <% if @question.nb_answers == 1 %>
+            <p><%= radio_button_tag "response[content]", choice.content %> <%= choice.content %></p>
           <% else %>
-            <p><input type="checkbox" /> <%= choice.content %></p>
+            <p><%= check_box_tag "response[#{choice.content}]", true %> <%= choice.content %></p>
           <% end %>
         <% end %>
       <% end %>
 
-    <input type="submit" value="Submit" />
-    <input type="submit" value="Skip" />
-  </form>
+      <%= submit_tag "Submit" %>
+      <%= submit_tag "Skip" %>
+    <% end %>
   </div>
 
 </div>

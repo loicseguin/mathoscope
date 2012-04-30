@@ -1,9 +1,9 @@
 Mathoscope::Application.routes.draw do
-  get "responses/new"
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :questions
+  resources :responses, only: [:new, :create]
 
   root to: 'static_pages#home'
   match '/signup', to: 'users#new'
