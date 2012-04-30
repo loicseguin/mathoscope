@@ -1,8 +1,18 @@
 <% provide(:title, "Doing the math!") %>
 
-<div class="row">
+<h2>Score: <%= current_user.score %></h2>
+<div class="hero-unit">
 
-  <div class="span8 offset2">
+  <% if @done %>
+
+    <h1>You answered all questions!</h1>
+
+    <p>Congratulations!</p>
+
+    <p>Come back later for some more questions.</p>
+
+  <% else %>
+
     <p><%= @question.content %></p>
 
     <%= form_tag("/responses", method: "post") do %>
@@ -22,7 +32,7 @@
       <%= submit_tag "Submit" %>
       <%= submit_tag "Skip" %>
     <% end %>
-  </div>
+  <% end %>
 
 </div>
 

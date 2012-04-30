@@ -8,6 +8,9 @@ class ResponsesController < ApplicationController
     else
       unanswered = Question.where("id NOT IN (?)", answered.map(&:id))
     end
+    if unanswered.count == 0
+      @done = true
+    end
     @question = unanswered.random
   end
 
@@ -24,7 +27,7 @@ class ResponsesController < ApplicationController
             break
           end
         end
-        if answer == params[:response][:content]
+        if params[:response] && answer == params[:response][:content]
           @response.content = params[:response][:content]
           save_response(@response)
         else
@@ -35,7 +38,7 @@ class ResponsesController < ApplicationController
         error = false
         @question.choices.each do |choice|
           if choice.answer?
-            if params[:response][choice.content] == nil
+            if !params[:response] || params[:response][choice.content] == nil
               error = true
             end
           end
