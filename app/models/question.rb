@@ -6,6 +6,7 @@
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #  content    :text
+#  nb_answers :integer
 #
 
 class Question < ActiveRecord::Base

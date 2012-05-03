@@ -8,6 +8,7 @@
 #  question_id :integer
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
+#  good_answer :boolean
 #
 
 require 'spec_helper'

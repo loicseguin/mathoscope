@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
+  <aside class="span3">
     <section>
       <h1>
         <%= gravatar_for @user %>
@@ -12,6 +12,31 @@
       <p><%= @user.email %></p>
     </section>
   </aside>
-  <p>Score: <%= @user.score %></p>
+
+  <div class="span8">
+
+  <h2 id="score">score</h2>
+  <h1 id="scoreval"><%= current_user.score %></h1>
+
+  <% if current_user.admin? && @user.responses.any? %>
+    <h2>Attempted questions</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Good answer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.responses.each do |response| %>
+        <tr>
+          <td><%= Question.find(response.question_id).content %></td>
+          <td><%= response.good_answer %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+  </div>
 </div>
 
