@@ -10,13 +10,15 @@
         <p>Admin</p>
       <% end %>
       <p><%= @user.email %></p>
+
     </section>
   </aside>
 
-  <div class="span8">
+  <div class="span9">
 
   <h2 id="score">score</h2>
   <h1 id="scoreval"><%= @user.score %></h1>
+  <%= link_to "start here!", "/testme", class: "btn start-btn" %>
 
   <% if current_user.admin? && @user.responses.any? %>
     <h2>Attempted questions</h2>

@@ -3,8 +3,8 @@
   <h2>To start measuring your math skills, press the big button.</h2>
 
   <% if signed_in? %>
-    <%= link_to "Test me!", new_response_path, class: "btn btn-large btn-primary" %>
+    <%= link_to "Start here!", new_response_path, class: "btn btn-large home" %>
   <% else %>
-    <%= link_to "Sign me up!", signup_path, class: "btn btn-large btn-primary" %>
+    <%= link_to "Sign me up!", signup_path, class: "btn btn-large home" %>
   <% end %>
 </div>
