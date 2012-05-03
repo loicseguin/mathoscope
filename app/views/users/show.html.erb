@@ -16,7 +16,7 @@
   <div class="span8">
 
   <h2 id="score">score</h2>
-  <h1 id="scoreval"><%= current_user.score %></h1>
+  <h1 id="scoreval"><%= @user.score %></h1>
 
   <% if current_user.admin? && @user.responses.any? %>
     <h2>Attempted questions</h2>
